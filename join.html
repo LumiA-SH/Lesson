@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>연짱이 클럽</title>
+    <link
+            rel="icon"
+            type="image/png"
+            href="https://i.imgur.com/bExcIBu.png"
+    >
+
+    <style>
+        body {
+            font-family: "MONA10";
+            margin: 0;
+            padding: 30px;
+            background-color: #0b0f19; /* 배경 바탕 어두운 남색 계열 */
+
+            /* 일러스트 이미지를 배경으로 설정 */
+            background-image: url('https://i.imgur.com/8xgdtDu.jpeg');
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+            background-attachment: fixed;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* 배경 이미지를 어둡고 은은하게 눌러주는 오버레이 레이어 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(11, 15, 25, 0.5);
+            z-index: -1;
+        }
+
+        /* 폼 영역 컨테이너 (불투명도 35% 남색 글래스 폼) */
+        #container {
+            background: rgba(16, 24, 48, 0.35);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(163, 113, 255, 0.25);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 430px;
+            position: relative;
+            z-index: 1;
+        }
+
+        nav { margin-top: 20px; }
+        nav ol { list-style: none; padding-left: 0; }
+        nav li { margin: 10px 0; }
+        nav a { color: #1a2a4a; cursor: pointer; text-decoration: underline; }
+
+        .userInput { margin-bottom: 25px; }
+
+        /* 💡 [수정] 항목 타이틀 글씨 색상을 선명한 남색으로 변경 */
+        .userInput h3 {
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            /* 투명 배경 위에서 글씨가 더 돋보이도록 약한 하이라이트 효과 추가 */
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+        }
+
+        /* 입력창 디자인 */
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid rgba(26, 50, 99, 0.4);
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box;
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff; /* 사용자가 타이핑하는 글자색은 흰색 유지 */
+            transition: all 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #ffffff;
+            box-shadow: 0 0 8px rgba(26, 50, 99, 0.6);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* 안내 텍스트 색상 */
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        #address { display: flex; flex-direction: column; gap: 8px; }
+        .postcode-row { display: flex; gap: 6px; }
+
+        /* 💡 [수정] 우편번호 찾기 버튼 배경색을 남색으로 변경 */
+        #addressButton {
+            white-space: nowrap;
+            padding: 10px 16px;
+            background: #1a3263;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #addressButton:hover {
+            background: #112244;
+        }
+
+        /* 회원가입 완료 버튼 영역 */
+        .submit-box {
+            margin-top: 35px;
+        }
+
+        /* 💡 [수정] 회원가입 완료 버튼 배경색을 남색으로 변경 */
+        #submitButton {
+            width: 100%;
+            padding: 14px;
+            background: #1a3263;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(26, 50, 99, 0.4);
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* 버튼 호버 및 액션 효과 */
+        #submitButton:hover {
+            background: #112244;
+            box-shadow: 0 6px 20px rgba(17, 34, 68, 0.6);
+            transform: translateY(-1px);
+        }
+
+        #submitButton:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 회원가입 영역 (남색 테마 글래스 폼) -->
+<div id="container">
+
+    <!-- join 회원가입 폼 -->
+    <form id="join" action="서버_전송_주소_기입" method="POST">
+
+        <div class="userInput">
+            <h3>아이디</h3>
+            <input type="text" id="id" name="userId" placeholder="아이디를 입력하세요" required>
+        </div>
+
+        <div class="userInput">
+            <h3>비밀번호</h3>
+            <input type="password" id="pw" name="userPw" placeholder="비밀번호를 입력하세요" required>
+        </div>
+
+        <div class="userInput">
+            <h3>비밀번호 재확인</h3>
+            <input type="password" id="pwCheck" placeholder="비밀번호를 한번 더 입력하세요" required>
+        </div>
+
+        <div class="userInput">
+            <h3>성명</h3>
+            <input type="text" id="name" name="userName" placeholder="이름을 입력하세요" required>
+        </div>
+
+        <div class="userInput">
+            <h3>전화번호(- 제외)</h3>
+            <input type="text" id="phoneNum" name="userPhone" placeholder="휴대폰 번호 입력" required>
+        </div>
+
+        <div class="userInput">
+            <h3>자택주소</h3>
+            <div id="address">
+                <div class="postcode-row">
+                    <input type="text" id="sample4_postcode" name="postcode" placeholder="우편번호" readonly required>
+                    <input type="button" id="addressButton" value="우편번호 찾기" onclick="sample4_execDaumPostcode()">
+                </div>
+                <input type="text" id="sample4_roadAddress" name="roadAddress" placeholder="도로명주소" readonly required>
+                <input type="text" id="sample4_jibunAddress" name="jibunAddress" placeholder="지번주소" readonly>
+                <input type="text" id="sample4_extraAddress" name="extraAddress" placeholder="참고주소" readonly>
+                <input type="text" id="sample4_detailAddress" placeholder="상세주소 입력">
+            </div>
+        </div>
+
+        <!-- 하단 회원가입 완료 버튼 영역 -->
+        <div class="submit-box">
+            <input type="submit" id="submitButton" value="회원가입 완료">
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
