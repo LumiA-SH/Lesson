@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>연짱이 클럽 회원가입</title>
+
+    <link
+            rel="icon"
+            type="image/png"
+            href="https://i.imgur.com/bExcIBu.png"
+    >
+
+    <style>
+        /* 페이지 전체 영역이에용. */
+        body{
+            font-family:"MONA10", sans-serif;
+            margin:0;
+            padding:40px 20px;
+            background-color:#faf8ff;
+        }
+
+        /* 회원가입 폼 전체를 감싸는 영역이에용. */
+        #container{
+            width:100%;
+            max-width:450px;
+            margin:0 auto;
+            padding:30px;
+            background-color:white;
+            border:1px solid #ddd;
+            border-radius:15px;
+            box-sizing:border-box;
+        }
+
+        /* 페이지 제목이에용. */
+        h1{
+            margin:0 0 30px;
+            color:#a371ff;
+            text-align:center;
+        }
+
+        /* 각각의 입력 영역이에용. */
+        .userInput{
+            margin-bottom:20px;
+        }
+
+        /* 입력 항목의 제목이에용. */
+        .userInput h3{
+            margin:0 0 8px;
+            color:#a371ff;
+            font-size:16px;
+        }
+
+        /* 일반 입력창과 비밀번호 입력창이에용. */
+        input[type="text"],
+        input[type="password"]{
+            width:100%;
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            font-size:15px;
+            box-sizing:border-box;
+        }
+
+        /* 우편번호 입력창과 버튼을 한 줄에 배치하는 영역이에용. */
+        .postcodeRow{
+            display:flex;
+            gap:8px;
+        }
+
+        /* 우편번호 입력창이에용. */
+        #sample4_postcode{
+            flex:1;
+            width:auto;
+        }
+
+        /* 우편번호 찾기 버튼이에용. */
+        #addressButton{
+            padding:10px 15px;
+            background-color:#a371ff;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            white-space:nowrap;
+        }
+
+        /* 버튼에 마우스를 올렸을 때의 모습이에용. */
+        #addressButton:hover{
+            background-color:#8955ed;
+        }
+
+        /* 주소 입력창 사이의 간격이에용. */
+        #address input[type="text"]{
+            margin-top:8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="container">
+
+    <h1>연짱이 클럽 회원가입</h1>
+
+    <form id="join">
+
+        <div class="userInput">
+            <h3>아이디</h3>
+            <input
+                    type="text"
+                    id="id"
+            >
+        </div>
+
+        <div class="userInput">
+            <h3>비밀번호</h3>
+            <input
+                    type="password"
+                    id="pw"
+            >
+        </div>
+
+        <div class="userInput">
+            <h3>비밀번호 재확인</h3>
+            <input
+                    type="password"
+                    id="pwCheck"
+            >
+        </div>
+
+        <div class="userInput">
+            <h3>성명</h3>
+            <input
+                    type="text"
+                    id="name"
+            >
+        </div>
+
+        <div class="userInput">
+            <h3>전화번호(- 제외)</h3>
+            <input
+                    type="text"
+                    id="phoneNum"
+            >
+        </div>
+
+        <div class="userInput">
+            <h3>자택주소</h3>
+
+            <div id="address">
+
+                <div class="postcodeRow">
+                    <input
+                            type="text"
+                            id="sample4_postcode"
+                            placeholder="우편번호"
+                            readonly
+                    >
+
+                    <input
+                            type="button"
+                            id="addressButton"
+                            value="우편번호 찾기"
+                            onclick="sample4_execDaumPostcode()"
+                    >
+                </div>
+
+                <input
+                        type="text"
+                        id="sample4_roadAddress"
+                        placeholder="도로명주소"
+                        readonly
+                >
+
+                <input
+                        type="text"
+                        id="sample4_jibunAddress"
+                        placeholder="지번주소"
+                        readonly
+                >
+
+                <input
+                        type="text"
+                        id="sample4_extraAddress"
+                        placeholder="참고주소"
+                        readonly
+                >
+
+                <input
+                        type="text"
+                        id="sample4_detailAddress"
+                        placeholder="상세주소"
+                >
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
